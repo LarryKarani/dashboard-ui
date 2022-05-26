@@ -13,6 +13,7 @@ import {
     XIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
+import Logo from '../components/logo'
 
 const navigation = [
     { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -85,11 +86,7 @@ export default function Dashboard() {
                                         </div>
                                     </Transition.Child>
                                     <div className="flex-shrink-0 flex items-center px-4 flex-col mt-3">
-                                        <img
-                                            className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                                            alt="Workflow"
-                                        />
+                                        <Logo/>
                                         <Avator/>
                                     </div>
                                     <div className="mt-5 flex-1 h-0 overflow-y-auto">
@@ -131,11 +128,7 @@ export default function Dashboard() {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 bg-white overflow-y-auto">
                         <div className="flex items-center flex-shrink-0 px-4 flex-col mt-3">
-                            <img
-                                className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                                alt="Insurance Portal"
-                            />
+                            <Logo />
                             <Avator />
                         </div>
                         <div className="mt-5 flex-grow flex flex-col">
