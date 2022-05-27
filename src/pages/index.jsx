@@ -1,10 +1,9 @@
 import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import Avator from '../components/avatar'
 import Card from '../components/card'
 
 import {
-    BellIcon,
     MenuAlt2Icon,
     XIcon,
     ViewGridIcon,
@@ -12,10 +11,10 @@ import {
     ChipIcon,
     OfficeBuildingIcon,
     UserCircleIcon,
-    DocumentTextIcon
+    DocumentTextIcon,
+    LogoutIcon
     
 } from '@heroicons/react/outline'
-import { SearchIcon } from '@heroicons/react/solid'
 import Logo from '../components/logo'
 import Hero from '../components/hero'
 
@@ -151,6 +150,14 @@ export default function Dashboard() {
                                             ))}
                                         </nav>
                                     </div>
+                                    <span className='group flex items-center pl-24 py-2 text-base font-medium rounded-md justify-items-center' >
+                                        <LogoutIcon className={classNames(
+                                            'mr-4 flex-shrink-0 h-6 w-6'
+                                        )}
+                                            aria-hidden="true"/>
+                                        Logout
+                                    </span>
+                                   
                                 </Dialog.Panel>
                             </Transition.Child>
                             <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -191,6 +198,13 @@ export default function Dashboard() {
                                 ))}
                             </nav>
                         </div>
+                        <span className='group flex items-center pl-16 py-2 text-base font-medium rounded-md justify-items-center text-gray-500' >
+                            <LogoutIcon className={classNames(
+                                'mr-4 flex-shrink-0 h-6 w-6'
+                            )}
+                                aria-hidden="true" />
+                            Logout
+                        </span>
                     </div>
                 </div>
                 <div className="md:pl-64 flex flex-col flex-1">
