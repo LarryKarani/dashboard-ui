@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import Avator from '../components/avatar'
+import Card from '../components/card'
 
 import {
     BellIcon,
@@ -27,14 +28,47 @@ const navigation = [
     { name: 'History', href: '/', icon: DocumentTextIcon, current: false },
 ]
 const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Overview', href: '/', icon: ViewGridIcon, current: false },
+    { name: 'Policy', href: '/', icon: ShieldCheckIcon, current: false },
+    { name: 'Reports', href: '/', icon: ChipIcon, current: true },
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
+
+const data = [
+    {
+        total: 1000,
+        claim: 40,
+        policy: 80,
+        policyValue: 400,
+        claimValue: 800,
+        claimColor: 'purple',
+        policyColor: 'green',
+
+    },
+    {
+        total: 2500,
+        claim: 50,
+        policy: 70,
+        policyValue: 1100,
+        claimValue: 1400,
+        claimColor: 'purple',
+        policyColor: 'green',
+    },
+    {
+        total: 2500,
+        claim: 50,
+        policy: 70,
+        policyValue: 1100,
+        claimValue: 1400,
+        claimColor: 'purple',
+        policyColor: 'green',
+    }
+]
+
+
 
 export default function Dashboard() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -171,73 +205,18 @@ export default function Dashboard() {
                         </button>
                         <div className="flex-1 px-4 flex justify-between">
                             <div className="flex-1 flex">
-                                <form className="w-full flex md:ml-0" action="#" method="GET">
-                                    <label htmlFor="search-field" className="sr-only">
-                                        Search
-                                    </label>
-                                    <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                                        <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-                                            <SearchIcon className="h-5 w-5" aria-hidden="true" />
-                                        </div>
-                                        <input
-                                            id="search-field"
-                                            className="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-0 focus:border-transparent sm:text-sm"
-                                            placeholder="Search"
-                                            type="search"
-                                            name="search"
-                                        />
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="ml-4 flex items-center md:ml-6">
-                                <button
-                                    type="button"
-                                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                </button>
-
-                                {/* Profile dropdown */}
-                                <Menu as="div" className="ml-3 relative">
-                                    <div>
-                                        <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            <span className="sr-only">Open user menu</span>
-                                            <img
-                                                className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                            />
-                                        </Menu.Button>
-                                    </div>
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
+                                {userNavigation.map((item) => (
+                                    <a
+                                        key={item.name}
+                                        href={item.href}
+                                        className={classNames(
+                                            item.current ? 'text-purple-700 underline' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 ',
+                                            'group flex items-center pl-14 py-2 text-sm font-medium rounded-md justify-items-center '
+                                        )}
                                     >
-                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            {userNavigation.map((item) => (
-                                                <Menu.Item key={item.name}>
-                                                    {({ active }) => (
-                                                        <a
-                                                            href={item.href}
-                                                            className={classNames(
-                                                                active ? 'bg-gray-100' : '',
-                                                                'block px-4 py-2 text-sm text-gray-700'
-                                                            )}
-                                                        >
-                                                            {item.name}
-                                                        </a>
-                                                    )}
-                                                </Menu.Item>
-                                            ))}
-                                        </Menu.Items>
-                                    </Transition>
-                                </Menu>
+                                        {item.name}
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -246,6 +225,15 @@ export default function Dashboard() {
                         <div className="py-6">
                             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                                 <Hero/>
+                                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1' >
+                                  {
+                                      data.map((item) => {
+                                          return (
+                                              <Card total={item.total} claim={item.claim} policy={item.policy} policyValue={item.policyValue} claimValue={item.claimValue} policyColor={item.policyColor} claimColor={item.claimColor}/>
+                                          )
+                                      })
+                                  }
+                                </div>
                             </div>
                         </div>
                     </main>
